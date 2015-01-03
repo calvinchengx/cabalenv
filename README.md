@@ -20,7 +20,26 @@ This `cabalenv` function will update
 
 ## Installation
 
-`cd /usr/local/bin && sudo wget https://raw.githubusercontent.com/calvinchengx/cabalenv/master/cabalenv.sh && sudo chmod +x cabalenv.sh`
+### 1. Download script and place in /usr/local/bin
+
+Example 1: 
+
+```
+cd /usr/local/bin
+sudo wget https://raw.githubusercontent.com/calvinchengx/cabalenv/master/cabalenv.sh
+sudo chmod +x cabalenv.sh
+```
+
+Example 2:
+
+```
+git clone git@github.com:calvinchengx/cabalenv.git
+cd cabalenv
+sudo ln -s "$(pwd)/cabalenv.sh" /usr/local/bin/cabalenv.sh
+sudo chmod +x /usr/local/bin/cabalenv.sh
+```
+
+### 2. Set $HS_PROJ_HOME and source the cabalenv.sh file
 
 In your `~/.zprofile`, specify
 

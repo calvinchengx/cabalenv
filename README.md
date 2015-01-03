@@ -4,9 +4,9 @@ A simple `zsh` script that works with `cabal sandbox` initialised in the same di
 
 ## Usage
 
-`lscabalenv` returns a list of directory names.  
+`lscabalenv` returns a list of directory names that contain `.cabal-sandbox`.  In the context of our `cabalenv` utility, we refer to these directory names as **cabal environment names**. 
 
-When a particular `.cabal-sandbox/bin` path is in `$PATH`, the `$CABAL_ENV` environment variable will be assigned its parent directory name (which we simply refer to as the cabal environment name) and the `$PROMPT` will also be updated to show the cabal environment name.
+When a particular `.cabal-sandbox/bin` path is in `$PATH`, the `$CABAL_ENV` environment variable will be assigned the cabal environment name and the `$PROMPT` will also be updated to show the cabal environment name.
 
 To begin working on a project, simply run
 
@@ -15,7 +15,7 @@ To begin working on a project, simply run
 This `cabalenv` function will update 
 
 * `$PATH` with `THE_CABAL_ENVIRONMENT_NAME`'s cabal sandbox path
-* set `$CABAL_ENV`
+* set `$CABAL_ENV` with the current cabal environment name
 * update `$PROMPT` with `THE_CABAL_ENVIRONMENT_NAME`
 
 ## Installation

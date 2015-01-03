@@ -22,6 +22,15 @@ This `cabalenv` function will update
 
 `cd /usr/local/bin && sudo wget https://raw.githubusercontent.com/calvinchengx/cabalenv/master/cabalenv.sh && sudo chmod +x cabalenv.sh`
 
+In your `~/.zprofile`, specify
+
+```
+export HS_PROJ_HOME=$HOME/work
+source `which cabalenv.sh`
+```
+
+where `work` is just a place where I create all my haskell project directories in.  You don't have to use `work` of course.
+
 ## Current Limitations, i.e. TODOs
 
 * Does not support *shared* cabal sandboxes yet.

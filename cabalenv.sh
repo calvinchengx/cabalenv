@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 _checkenvvar() {
 	if [[ ! -n "${HS_PROJ_HOME}" ]]; then
@@ -39,7 +38,7 @@ cabalenv() {
 
 	# no sandbox name?
 	if  [[ -z "$1" ]]; then
-	   	echo "Please provide your Cabal sandbox name."
+		   echo "Please provide your Cabal sandbox name."
 		return 0
 	fi
 
@@ -50,12 +49,13 @@ cabalenv() {
 		# cd into it 
 		# remove the previous .cabal-sandbox line in $PATH, if any
 		# set $HS_PROJ_HOME/[given sandbox name]/.cabal-sandbox/bin to $PATH
-		export CABAL_ENV=$1
 
 		# remove old .cabal-sandbox path from $PATH and clear the cabal name in $PROMPT
 		PATH="$(_removeoldpath .cabal-sandbox)"
+		unset CABAL_ENV
 		PROMPT=$(echo $PROMPT | sed -e 's|\[cabal: .*\] ||g')
 
+		export CABAL_ENV=$1
 		echo "Switching to "$CABAL_ENV
 		PATH=$HS_PROJ_HOME/$CABAL_ENV/.cabal-sandbox/bin:$PATH
 		PROMPT="[cabal: "$CABAL_ENV"] "$PROMPT 

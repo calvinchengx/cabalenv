@@ -80,3 +80,34 @@ lscabalenv() {
 		return 0
 	fi
 }
+
+_findtarget() {
+    dir=$PWD
+    target="cabal.sandbox.config"
+    while [[ ! -e $dir/$target && $dir != "/" ]]; do
+        dir=${dir%/*}
+        [[ $dir = "/" ]] && return 1
+    done
+}
+
+# Wrapper function for runhaskell 
+# that automatically detects a cabal sandbox and passes the package db value to the -package-db flag
+runhaskells() {
+    if _findtarget; then
+        local db=$(sed -ne '/^package-db: */{s///p;q;}' "$dir/$target")
+        runhaskell -no-user-package-db -package-db="$db" "$@"
+    else
+        runhaskell "$@"
+    fi
+}
+
+# Wrapper function for ghc
+# that automatically detects a cabal sandbox and passes the package db value to the -package-db flag
+ghcs() {
+    if _findtarget; then
+        local db=$(sed -ne '/^package-db: */{s///p;q;}' "$dir/$target")
+        ghc -no-user-package-db -package-db="$db" "$@"
+    else
+        ghc "$@"
+    fi
+}

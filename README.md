@@ -18,6 +18,10 @@ This `cabalenv` function will update
 * set `$CABAL_ENV` with the current cabal environment name
 * update `$PROMPT` with `THE_CABAL_ENVIRONMENT_NAME`
 
+`runhaskells` is a wrapper command that automatically finds the cabal sandbox's package path and assign it to the `-package-db` flag
+
+`ghcs` is a wrapper command that automatically finds the cabal sandbox's package path and assign it to the `-package-db` flag
+
 ## Installation
 
 ### 1. Download script and place in /usr/local/bin

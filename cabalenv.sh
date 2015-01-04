@@ -111,3 +111,14 @@ ghcs() {
         ghc "$@"
     fi
 }
+
+# Wrapper function for ghci
+# that automatically detects a cabal sandbox and passes the package db value to the -package-db flag
+ghcis() {
+    if _findtarget; then
+        local db=$(sed -ne '/^package-db: */{s///p;q;}' "$dir/$target")
+        ghci -no-user-package-db -package-db="$db" "$@"
+    else
+        ghci "$@"
+    fi
+}

@@ -1,18 +1,32 @@
 # CabalEnv
 
-A simple `zsh` script that works with `cabal sandbox` initialised in the same directory as the project directory.  
+A simple `zsh` script that works with `cabal sandbox` initialised in the same directory as the project directory.
 
 ## Usage
 
-`lscabalenv` returns a list of directory names that contain `.cabal-sandbox`.  In the context of our `cabalenv` utility, we refer to these directory names as **cabal environment names**. 
+### Create a new cabalenv
+
+`your_proj_dir` is equivalent to `THE_CABAL_ENVIRONMENT_NAME`.
+
+```
+cd $PROJECT_HOME/your_proj_dir
+cabal sandbox init
+cabalenv your_proj_dir
+```
+
+### List existing cabalenv
+
+`lscabalenv` returns a list of directory names that contain `.cabal-sandbox`.  In the context of our `cabalenv` utility, we refer to these directory names as **cabal environment names**.
+
+### Switch into an existing cabalenv
 
 When a particular `.cabal-sandbox/bin` path is in `$PATH`, the `$CABAL_ENV` environment variable will be assigned the cabal environment name and the `$PROMPT` will also be updated to show the cabal environment name.
 
-To begin working on a project, simply run
+So, to begin working on a project, simply run
 
 `cabalenv THE_CABAL_ENVIRONMENT_NAME`
 
-This `cabalenv` function will update 
+This `cabalenv` function will update
 
 * `$PATH` with `THE_CABAL_ENVIRONMENT_NAME`'s cabal sandbox path
 * set `$CABAL_ENV` with the current cabal environment name
@@ -26,7 +40,7 @@ This `cabalenv` function will update
 
 ### 1. Download script and place in /usr/local/bin
 
-Example 1: 
+Example 1:
 
 ```
 cd /usr/local/bin
